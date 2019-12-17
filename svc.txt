@@ -1,22 +1,21 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Dec 16 22:31:30 2019
-
-@author: tharu
-"""
-
 import pandas as pd
-from sklearn.svm import SVC
 from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split
+from matplotlib import pyplot as plt
 iris=load_iris()
-data=iris.data
+iris
 iris.feature_names
-df=pd.DataFrame(data,columns=iris.feature_names)
-df["target"]=iris.target
+df=pd.DataFrame(iris.data,columns=iris.feature_names)
+df
+df['target']=iris.target
+df
+df[df.target==1].head()
+from sklearn.model_selection import train_test_split
 x=df.drop(["target"],axis="columns")
 y=df.target
-x_train,y_train,x_test,y_test=train_test_split(x,y,test_size=0.3)
+x
+X_train,X_test,y_train,Y_test=train_test_split(x,y,test_size=0.2)
+from sklearn.svm import SVC
 model=SVC()
-model.fit(x,y)
-model.score(x_test,y_test)
+clf=model.fit(X_train,y_train)
+model.score(X_test,Y_test)
+model.predict(X_test)
