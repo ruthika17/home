@@ -1,0 +1,30 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Dec 16 22:47:34 2019
+
+@author: tharu
+"""
+
+import pandas as pd
+from sklearn.preprocessing import LabelEncoder
+from sklearn import tree
+from matplotlib import pyplot as plt
+df=pd.read_csv("D:/weather.csv")
+df
+target=df.play
+
+le=LabelEncoder()
+df["outlook"]=le.fit_transform(df["outlook"])
+df
+df["temperature"]=le.fit_transform(df["temperature"])
+df["humidity"]=le.fit_transform(df["humidity"])
+df
+df["windy"]=le.fit_transform(df["windy"])
+df
+input=df.drop("play",axis="columns")
+model=tree.DecisionTreeClassifier()
+model.fit(input,target)
+model.score(input,target)
+pred=model.predict(input)
+plt.plot(pred)
+pred

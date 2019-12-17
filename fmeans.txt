@@ -1,0 +1,23 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Dec 16 21:43:35 2019
+
+@author: tharu
+"""
+import pandas as pd
+from fcmeans import FCM
+from matplotlib import pyplot as plt
+import seaborn.apionly as sns
+iris=sns.load_dataset("iris")
+df=pd.read_csv("D:/bodyfat.csv")
+plt.scatter(df["age"],df["fat"])
+model=FCM(n_clusters=4,max_iter=100)
+model.fit(df)
+pred=model.predict(df)
+pred
+df["cluster"]=pred
+df
+df[df.cluster==3]
+cen=model.centers
+plt.scatter(cen.iloc[:,0],cen.iloc[:,1],c="blue",marker="^")
+plt.scatter(df.iloc[:,0],df.iloc[:,1],c="green",marker="*")

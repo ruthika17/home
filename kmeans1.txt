@@ -1,0 +1,25 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Dec 16 21:23:42 2019
+
+@author: tharu
+"""
+
+import pandas as pd
+from sklearn.cluster import KMeans
+from matplotlib import pyplot as plt
+df=pd.read_csv("D:/cars.csv")
+plt.scatter(df["speed"],df["dist"])
+km=KMeans(n_clusters=3,max_iter=100)
+km.fit(df)
+y_pred=km.predict(df)
+pred=km.fit_predict(df)
+df["cluster"]=pred
+df
+df[df.cluster==2]
+df[df.cluster==1]
+df["another"]=y_pred
+df[df.another==2]
+centers=km.cluster_centers_
+plt.scatter(centers[:,0],centers[:,1],c="blue",marker="^")
+plt.scatter(df.iloc[:,0],df.iloc[:,1],c="grey",marker="*")

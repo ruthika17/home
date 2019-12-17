@@ -1,0 +1,46 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Dec 16 19:53:17 2019
+
+@author: tharu
+"""
+from sklearn.preprocessing import LabelEncoder
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+from scipy import stats
+df=pd.read_csv("D:/details.csv")
+print(df.isnull().sum())
+df=df.dropna()
+df
+df.age.dtype
+print(df.age.astype(int))
+lp=LabelEncoder()
+df['purchased item']=lp.fit_transform(df['purchased item'])
+df
+m=df["salary"].min()
+maxi=df["salary"].max()
+norm=df["salary"]-m/maxi-m
+norm
+arr=df["salary"]
+s=pd.cut(arr,bins=3,labels=["low","high","medium"])
+s
+#################################################################3333
+data=pd.read_csv("D:/construction.csv")
+data.isnull().sum()
+data.date.dtype
+data
+data.date.astype(int)
+m=data.min()
+sd=data.max()
+norm1=data-m/sd
+norm1
+plt.boxplot(data)
+
+val1=data["cost"].mean()
+data["cost"].fillna(val1,inplace=True)
+data
+######################################################
+df1=pd.read_csv("D:/bodyfat.csv")
+np.corrcoef(df1["age"])
+np.corrcoef(df1["fat"])

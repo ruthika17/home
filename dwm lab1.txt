@@ -1,0 +1,47 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Mon Dec 16 18:59:35 2019
+
+@author: tharu
+"""
+
+
+import numpy as np
+import pandas as pd
+from  scipy import stats
+import statsmodels.api as sm
+from matplotlib import pyplot as plt
+import pylab as py
+df=pd.read_csv("D:/cars.csv")
+avg=df["speed"].mean()
+print(avg)
+df["dist"].mean()
+print(df)
+df.median()
+mid=(min(df["speed"])+max(df["speed"]))/2
+mid
+stats.mode(df["speed"])
+
+df.var()
+df.std()
+
+q=np.percentile(df,[0,25,50,75])
+print(q[0])
+data_min,data_max=df.min(),df.max()
+plt.hist(df)
+plt.boxplot(df)
+############################################
+
+df1=pd.read_csv("D:/bodyfat.csv")
+df1
+max=df1.max()
+m=df1.min()
+df1.mean()
+df1.median()
+mid1=(m+max)/2
+mid1
+q=np.percentile(df1,[25,75])
+print(q[0])
+print(q[1])
+plt.scatter(df1["age"],df1["fat"])
+sm.qqplot(df,line="45")
